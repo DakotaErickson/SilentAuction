@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 
 from app import models
+from app.config import auction_is_open
 from app.schemas import BidCreate
 
 MIN_BID_INCREMENT = 5.00
@@ -19,6 +20,9 @@ def place_bid(db: Session, item_id: int, bid_in: BidCreate) -> tuple[models.Bid 
     Attempt to place a bid. Returns (bid, error_message).
     Uses with_for_update() to prevent race conditions.
     """
+    if not auction_is_open():
+        return None, "The auction is not open."
+    
     item = (
         db.query(models.Item)
         .filter(models.Item.id == item_id)

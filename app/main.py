@@ -8,6 +8,7 @@ from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 
 from app import crud, models
+from app.config import auction_is_open, AUCTION_END
 from app.database import Base, engine, get_db
 from app.schemas import AuctionResults, BidCreate, BidResult, ItemResponse, ItemResult, WinnerInfo
 from app.ws_manager import manager
@@ -33,6 +34,14 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 async def serve_frontend() -> HTMLResponse:
     with open("static/index.html") as f:
         return HTMLResponse(content=f.read())
+
+@app.get("/auction/status")
+def auction_status() -> dict:
+    """Returns whether the auction is currently open and when it ends."""
+    return {
+        "is_open": auction_is_open(),
+        "ends_at": AUCTION_END.isoformat(),
+    }
 
 
 @app.get("/items", response_model=list[ItemResponse])

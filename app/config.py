@@ -9,5 +9,4 @@ AUCTION_END: datetime = datetime.fromisoformat(
 )
 
 def auction_is_open() -> bool:
-    return True
-    # return datetime.now() < AUCTION_END
+    return datetime.now() < AUCTION_END
