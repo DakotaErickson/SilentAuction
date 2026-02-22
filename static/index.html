@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pray-Woodman Silent Auction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="header-title">
+        <span>Pray-Woodman Elementary </span>Silent Auction
+      </div>
+      <div class="ws-status">
+        <div class="ws-dot disconnected" id="ws-dot"></div>
+        <span id="ws-label">Connecting…</span>
+      </div>
+      <div>
+        <p id="countdown" style="color: var(--gold-light); font-weight: 500; margin-top: 0.5rem;"></p>
+      </div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <h1>Bid on Something <em>Amazing</em></h1>
+    <p>All proceeds support our students and school programs.</p>
+    <div class="gold-divider"></div>
+  </div>
+
+  <main>
+    <div id="loading">
+      <div class="spinner"></div>
+      <p>Loading auction items…</p>
+    </div>
+
+    <div id="empty">
+      <p>No auction items available yet. Check back soon!</p>
+    </div>
+
+    <div id="items-grid"></div>
+  </main>
+
+  <div id="toast-container"></div>
+
+  <script src="/static/auction.js"></script>
+</body>
+</html>
