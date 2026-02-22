@@ -1,19 +1,13 @@
 from sqlalchemy.orm import Session
 
 from app import models
-from app.config import auction_is_open
 from app.schemas import BidCreate
-from dotenv import load_dotenv
-import os
 
-
-load_dotenv()
-
-MIN_BID_INCREMENT = os.getenv("MIN_BID_INCREMENT", 5.00)
+MIN_BID_INCREMENT = 5.00
 
 
 def get_all_items(db: Session) -> list[models.Item]:
-    return db.query(models.Item).all()
+    return db.query(models.Item).all()  # type: ignore[return-value]
 
 
 def get_item(db: Session, item_id: int) -> models.Item | None:
@@ -25,9 +19,6 @@ def place_bid(db: Session, item_id: int, bid_in: BidCreate) -> tuple[models.Bid 
     Attempt to place a bid. Returns (bid, error_message).
     Uses with_for_update() to prevent race conditions.
     """
-    if not auction_is_open():
-        return None, "The auction is not open."
-
     item = (
         db.query(models.Item)
         .filter(models.Item.id == item_id)
@@ -54,3 +45,11 @@ def place_bid(db: Session, item_id: int, bid_in: BidCreate) -> tuple[models.Bid 
     db.refresh(item)
 
     return bid, None
+
+def get_auction_results(db: Session) -> list[models.Item]:
+    """Return all items with their full bid history, ordered by item id."""
+    return (
+        db.query(models.Item)
+        .order_by(models.Item.id)
+        .all()  # type: ignore[return-value]
+    )

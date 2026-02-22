@@ -1,3 +1,4 @@
+import os
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 
@@ -7,9 +8,8 @@ from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 
 from app import crud, models
-from app.config import auction_is_open, AUCTION_END
 from app.database import Base, engine, get_db
-from app.schemas import BidCreate, BidResult, ItemResponse
+from app.schemas import AuctionResults, BidCreate, BidResult, ItemResponse, ItemResult, WinnerInfo
 from app.ws_manager import manager
 
 
@@ -28,12 +28,6 @@ app = FastAPI(
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-@app.get("/auction/status")
-def auction_status() -> dict:
-    return {
-        "is_open": auction_is_open(),
-        "ends_at": AUCTION_END.isoformat(),
-    }
 
 @app.get("/", response_class=HTMLResponse)
 async def serve_frontend() -> HTMLResponse:
@@ -62,7 +56,6 @@ async def place_bid(
     db: Session = Depends(get_db),
 ) -> BidResult:
     """Place a bid on an item. Broadcasts updated price to all WebSocket clients."""
-    print(f"bid_in: {bid_in}")
     bid, error = crud.place_bid(db, item_id, bid_in)
 
     if error:
@@ -81,6 +74,46 @@ async def place_bid(
     await manager.broadcast(result.model_dump())
 
     return result
+
+
+
+@app.get("/admin/results", response_model=AuctionResults)
+def admin_results(token: str, db: Session = Depends(get_db)) -> AuctionResults:
+    """
+    Returns full auction results including winner and bid history for every item.
+    Protected by ADMIN_TOKEN environment variable.
+    Access via: /admin/results?token=your_secret_token
+    """
+    if token != os.getenv("ADMIN_TOKEN"):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Unauthorized.")
+
+    items = crud.get_auction_results(db)
+
+    results: list[ItemResult] = []
+    for item in items:
+        # bids are ordered descending by id, so first is the winning bid
+        winning_bid = item.bids[0] if item.bids else None
+        winner = WinnerInfo(amount=winning_bid.amount, contact=winning_bid.contact) if winning_bid else None
+
+        results.append(ItemResult(
+            id=item.id,
+            name=item.name,
+            description=item.description,
+            starting_bid=item.starting_bid,
+            final_bid=item.current_bid,
+            total_bids=len(item.bids),
+            winner=winner,
+            bid_history=item.bids,
+        ))
+
+    items_with_bids = sum(1 for r in results if r.total_bids > 0)
+
+    return AuctionResults(
+        total_items=len(results),
+        items_with_bids=items_with_bids,
+        items_without_bids=len(results) - items_with_bids,
+        results=results,
+    )
 
 
 @app.websocket("/ws")

@@ -214,7 +214,7 @@ function showAuctionClosed() {
     btn.disabled    = true;
     btn.textContent = 'Auction Closed';
   });
-  showToast('The auction has closed. Thank you for participating!', 'info');
+  showToast('The auction is not open.', 'info');
 }
 
 function updateCountdown(ms) {

@@ -62,3 +62,31 @@ class BidResult(BaseModel):
     item_name: str
     current_bid: float
     bid_id: int
+
+
+class WinnerInfo(BaseModel):
+    """The highest bid for an item and the contact who placed it."""
+    amount: float
+    contact: str
+
+
+class ItemResult(BaseModel):
+    """Full results summary for a single auction item."""
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    name: str
+    description: str
+    starting_bid: float
+    final_bid: float
+    total_bids: int
+    winner: WinnerInfo | None  # None if no bids were placed
+    bid_history: list[BidResponse]
+
+
+class AuctionResults(BaseModel):
+    """Top-level admin results payload."""
+    total_items: int
+    items_with_bids: int
+    items_without_bids: int
+    results: list[ItemResult]
