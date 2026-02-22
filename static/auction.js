@@ -1,5 +1,5 @@
 const BASE   = window.location.origin;
-const WS_URL = `ws://${window.location.host}/ws`;
+const WS_URL = `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/ws`;
 
 // ── State ──────────────────────────────────────────────────────
 const items = new Map(); // item_id → item object
