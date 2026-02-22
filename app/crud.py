@@ -26,7 +26,7 @@ def place_bid(db: Session, item_id: int, bid_in: BidCreate) -> tuple[models.Bid 
     Uses with_for_update() to prevent race conditions.
     """
     if not auction_is_open():
-        return None, "The auction has closed. No further bids are accepted."
+        return None, "The auction is not open."
 
     item = (
         db.query(models.Item)
