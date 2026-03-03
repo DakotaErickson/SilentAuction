@@ -18,12 +18,12 @@ ITEMS = [
         "starting_bid": 50.00,
     },
     {
-        "name": "Front Row Seats Music Program: 4th",
+        "name": "Front Row Seats Music Program: 4th Grade",
         "description": "Up to six (6) reserved seats in the front row at MPAAC for the Music Program next Fall - 4th Grade",
         "starting_bid": 50.00,
     },
     {
-        "name": "Front Row Seats Music Program: 4th",
+        "name": "Front Row Seats Music Program: 4th Grade",
         "description": "Up to six (6) reserved seats in the front row at MPAAC for the Music Program next Fall - 4th Grade",
         "starting_bid": 50.00,
     },
@@ -38,12 +38,12 @@ ITEMS = [
         "starting_bid": 50.00,
     },
     {
-        "name": "Front Row Seats Music Program: 2nd",
+        "name": "Front Row Seats Music Program: 2nd Grade",
         "description": "Up to six (6) reserved seats in the front row at MPAAC for the Music Program next Spring - 2nd Grade",
         "starting_bid": 50.00,
     },
     {
-        "name": "Front Row Seats Music Program: 2nd",
+        "name": "Front Row Seats Music Program: 2nd Grade",
         "description": "Up to six (6) reserved seats in the front row at MPAAC for the Music Program next Spring - 2nd Grade",
         "starting_bid": 50.00,
     },
