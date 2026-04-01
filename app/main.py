@@ -102,7 +102,7 @@ def admin_results(token: str, db: Session = Depends(get_db)) -> AuctionResults:
     for item in items:
         # bids are ordered descending by id, so first is the winning bid
         winning_bid = item.bids[0] if item.bids else None
-        winner = WinnerInfo(amount=winning_bid.amount, contact=winning_bid.contact) if winning_bid else None
+        winner = WinnerInfo(amount=winning_bid.amount, name=winning_bid.name, contact=winning_bid.contact) if winning_bid else None
 
         results.append(ItemResult(
             id=item.id,

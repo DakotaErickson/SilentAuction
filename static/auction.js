@@ -67,6 +67,7 @@ async function loadItems() {
   try {
     const res  = await fetch(`${BASE}/items`);
     const data = await res.json();
+    console.log(data)
 
     document.getElementById('loading').style.display = 'none';
 
@@ -93,6 +94,10 @@ function renderCard(item) {
   const card = document.createElement('div');
   card.className = 'item-card';
   card.id = `card-${item.id}`;
+  const current_winner = item.bids && item.bids.length > 0
+    ? item.bids[0].name
+    : "none";
+  // console.log(item.bids)
 
   card.innerHTML = `
     <div class="card-accent"></div>
@@ -110,6 +115,7 @@ function renderCard(item) {
           <div style="text-align:right">
             <div class="starting-bid">Starts at ${formatCurrency(item.starting_bid)}</div>
             <div class="min-increment" id="hint-${item.id}">Minimum next bid: ${minNext}</div>
+            <div class="current-winner">Current Winner: ${current_winner}</div>
           </div>
         </div>
 
@@ -131,6 +137,13 @@ function renderCard(item) {
           </div>
           <input
             type="text"
+            id="name-${item.id}"
+            placeholder="First and last name"
+            required
+            aria-label="Full name"
+          />
+          <input
+            type="text"
             id="contact-${item.id}"
             placeholder="Phone number"
             required
@@ -150,14 +163,23 @@ async function submitBid(event, itemId) {
   event.preventDefault();
 
   const amountInput  = document.getElementById(`amount-${itemId}`);
+  const nameInput    = document.getElementById(`name-${itemId}`);
   const contactInput = document.getElementById(`contact-${itemId}`);
   const errorEl      = document.getElementById(`error-${itemId}`);
   const btn          = document.getElementById(`btn-${itemId}`);
 
   const amount  = parseFloat(amountInput.value);
+  const name    = nameInput.value.trim();
   const contact = contactInput.value.trim();
 
   errorEl.textContent = '';
+
+  if (!name) {
+    errorEl.textContent = 'Please enter your first and last name.';
+    nameInput.focus();
+    return;
+  }
+
   btn.disabled    = true;
   btn.textContent = 'Placing…';
 
@@ -165,7 +187,7 @@ async function submitBid(event, itemId) {
     const res  = await fetch(`${BASE}/items/${itemId}/bid`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ amount, contact }),
+      body: JSON.stringify({ amount, name, contact }),
     });
 
     const data = await res.json();
@@ -176,6 +198,7 @@ async function submitBid(event, itemId) {
       showToast(message, 'error');
     } else {
       amountInput.value  = '';
+      nameInput.value    = '';
       contactInput.value = '';
       showToast(`Bid of ${formatCurrency(data.current_bid)} placed successfully!`, 'success');
     }

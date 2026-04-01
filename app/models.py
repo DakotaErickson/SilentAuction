@@ -23,6 +23,7 @@ class Bid(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
     item_id: Mapped[int] = mapped_column(Integer, ForeignKey("items.id"), nullable=False)
     amount: Mapped[float] = mapped_column(Float, nullable=False)
+    name: Mapped[str] = mapped_column(String, nullable=False)  # bidder full name
     contact: Mapped[str] = mapped_column(String, nullable=False)  # email or phone
 
     item: Mapped["Item"] = relationship("Item", back_populates="bids")

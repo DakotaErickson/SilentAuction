@@ -1,7 +1,7 @@
 import re
 
 import phonenumbers
-from pydantic import BaseModel, ConfigDict, EmailStr, field_validator
+from pydantic import BaseModel, ConfigDict, field_validator
 
 
 def is_valid_phone(value: str) -> bool:
@@ -11,14 +11,20 @@ def is_valid_phone(value: str) -> bool:
     except phonenumbers.NumberParseException:
         return False
 
-
-def is_valid_email(value: str) -> bool:
-    return bool(re.match(r"^[^@\s]+@[^@\s]+\.[^@\s]+$", value))
-
-
 class BidCreate(BaseModel):
     amount: float
+    name: str
     contact: str
+
+    @field_validator("name")
+    @classmethod
+    def validate_name(cls, v: str) -> str:
+        v = v.strip()
+        if not v:
+            raise ValueError("Name is required.")
+        if len(v.split()) < 2:
+            raise ValueError("Please enter both a first and last name.")
+        return v
 
     @field_validator("contact")
     @classmethod
@@ -41,6 +47,7 @@ class BidResponse(BaseModel):
     id: int
     item_id: int
     amount: float
+    name: str
     contact: str
 
 
@@ -67,6 +74,7 @@ class BidResult(BaseModel):
 class WinnerInfo(BaseModel):
     """The highest bid for an item and the contact who placed it."""
     amount: float
+    name: str
     contact: str
 
 

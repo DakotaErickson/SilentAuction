@@ -22,7 +22,7 @@ def place_bid(db: Session, item_id: int, bid_in: BidCreate) -> tuple[models.Bid 
     """
     if not auction_is_open():
         return None, "The auction is not open."
-    
+
     item = (
         db.query(models.Item)
         .filter(models.Item.id == item_id)
@@ -40,7 +40,7 @@ def place_bid(db: Session, item_id: int, bid_in: BidCreate) -> tuple[models.Bid 
             f"(current bid ${item.current_bid:.2f} + ${MIN_BID_INCREMENT:.2f} minimum increment)."
         )
 
-    bid = models.Bid(item_id=item_id, amount=bid_in.amount, contact=bid_in.contact)
+    bid = models.Bid(item_id=item_id, amount=bid_in.amount, name=bid_in.name, contact=bid_in.contact)
     item.current_bid = bid_in.amount
 
     db.add(bid)
@@ -49,6 +49,7 @@ def place_bid(db: Session, item_id: int, bid_in: BidCreate) -> tuple[models.Bid 
     db.refresh(item)
 
     return bid, None
+
 
 def get_auction_results(db: Session) -> list[models.Item]:
     """Return all items with their full bid history, ordered by item id."""
