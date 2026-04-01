@@ -79,7 +79,7 @@ ITEMS = [
         "starting_bid": 50.00,
     },
     {
-        "name": "Pizza Party",
+        "name": "Pizza Party at Maize City Park",
         "description": "Your student's entire class will enjoy pizza and games at Maize City Park",
         "starting_bid": 50.00,
     },

@@ -96,8 +96,7 @@ function renderCard(item) {
   card.id = `card-${item.id}`;
   const current_winner = item.bids && item.bids.length > 0
     ? item.bids[0].name
-    : "none";
-  // console.log(item.bids)
+    : "n/a";
 
   card.innerHTML = `
     <div class="card-accent"></div>
