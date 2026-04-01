@@ -12,7 +12,7 @@ function connectWS() {
 
   ws.onopen = () => {
     document.getElementById('ws-dot').className = 'ws-dot connected';
-    document.getElementById('ws-label').textContent = 'Live';
+    document.getElementById('ws-label').textContent = 'Connected';
   };
 
   ws.onclose = () => {
