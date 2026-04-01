@@ -23,9 +23,9 @@ class BidCreate(BaseModel):
     @field_validator("contact")
     @classmethod
     def validate_contact(cls, v: str) -> str:
-        if is_valid_email(v) or is_valid_phone(v):
+        if is_valid_phone(v):
             return v
-        raise ValueError("Contact must be a valid email address or US phone number.")
+        raise ValueError("Contact must be a valid phone number.")
 
     @field_validator("amount")
     @classmethod

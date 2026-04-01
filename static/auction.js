@@ -132,9 +132,9 @@ function renderCard(item) {
           <input
             type="text"
             id="contact-${item.id}"
-            placeholder="Email or phone number"
+            placeholder="Phone number"
             required
-            aria-label="Email or phone"
+            aria-label="Phone"
           />
           <div class="field-error" id="error-${item.id}"></div>
         </form>
