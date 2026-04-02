@@ -69,13 +69,13 @@ ITEMS = [
         "starting_bid": 50.00,
     },
     {
-        "name": "Foxi Treat at Maize City Park",
-        "description": "Your student's entire class will earn a trip to the new Foxi Ice Cream to enjoy an ice cream at the Maize City Park",
+        "name": "Principal For A Day",
+        "description": "Your student will accompany Ms. Dow throughout the day and enjoy \"Principal Duties\"",
         "starting_bid": 50.00,
     },
     {
-        "name": "Principal For A Day",
-        "description": "Your student will accompany Ms. Dow throughout the day and enjoy \"Principal Duties\"",
+        "name": "Foxi Treat at Maize City Park",
+        "description": "Your student's entire class will earn a trip to the new Foxi Ice Cream to enjoy an ice cream at the Maize City Park",
         "starting_bid": 50.00,
     },
     {
@@ -86,12 +86,27 @@ ITEMS = [
     {
         "name": "Sonic Drink Party",
         "description": "Your student's entire class will earn Sonic drinks delivered to them at school",
-        "starting_bid": 20.00,
+        "starting_bid": 30.00,
     },
     {
         "name": "Lunch with Ms. Dow",
         "description": "Your student will go out to lunch with Ms. Dow!",
         "starting_bid": 20.00,
+    },
+    {
+        "name": "Donut Party #1",
+        "description": "Your student's entire class will receive a donut party",
+        "starting_bid": 30.00,
+    },
+    {
+        "name": "Donut Party #2",
+        "description": "Your student's entire class will receive a donut party",
+        "starting_bid": 30.00,
+    },
+    {
+        "name": "Donut Party #3",
+        "description": "Your student's entire class will receive a donut party",
+        "starting_bid": 30.00,
     },
     {
         "name": "Cupcake Party #1",
@@ -106,21 +121,6 @@ ITEMS = [
     {
         "name": "Cupcake Party #3",
         "description": "Your student's entire class will receive a cupcake party",
-        "starting_bid": 20.00,
-    },
-    {
-        "name": "Donut Party #1",
-        "description": "Your student's entire class will receive a donut party",
-        "starting_bid": 20.00,
-    },
-    {
-        "name": "Donut Party #2",
-        "description": "Your student's entire class will receive a donut party",
-        "starting_bid": 20.00,
-    },
-    {
-        "name": "Donut Party #3",
-        "description": "Your student's entire class will receive a donut party",
         "starting_bid": 20.00,
     },
 ]
