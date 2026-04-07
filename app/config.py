@@ -9,4 +9,4 @@ AUCTION_END: datetime = datetime.fromisoformat(
 )
 
 def auction_is_open() -> bool:
-    return datetime.fromisoformat("2026-04-06T07:59:59") < datetime.now() < AUCTION_END
+    return datetime.fromisoformat("2026-04-13T07:59:59") < datetime.now() < AUCTION_END
