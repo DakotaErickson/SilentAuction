@@ -10,6 +10,7 @@ from sqlalchemy.orm import Session
 from app import crud, models
 from app.config import auction_is_open, AUCTION_END
 from app.database import Base, engine, get_db
+from app.logging_middleware import LoggingMiddleware
 from app.schemas import AuctionResults, BidCreate, BidResult, ItemResponse, ItemResult, WinnerInfo
 from app.ws_manager import manager
 
@@ -26,6 +27,8 @@ app = FastAPI(
     version="1.0.0",
     lifespan=lifespan,
 )
+
+app.add_middleware(LoggingMiddleware)
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
