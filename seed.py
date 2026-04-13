@@ -8,6 +8,31 @@ from app import models
 
 ITEMS = [
     {
+        "name": "Ultimate Family Fun Package",
+        "description": "Four (4) Blast-Off Bay admissions, One (1) hour court time four (4) paddles/ball rental and two (2) appetizers at Chicken N Pickle, four (4) GlowGolf admissions, one (1) hour lane rental at Shocker Sports Grill & Lanes, four (4) youth entry passes to The Arcade, four (4) admission tickets to Urban Air",
+        "starting_bid": 200.0,
+    },
+    {
+        "name": "Birthday Party Package",
+        "description": "Birthday party at Bricks & Minifigs (M-TH), small horizontal banner from Brush and Banner Co, birthday cake from Carrie.bakes Cakes",
+        "starting_bid": 100.0,
+    },
+    {
+        "name": "Jeuje - Lip Filler Service",
+        "description": "Valued at over $1,000",
+        "starting_bid": 100.0,
+    },
+    {
+        "name": "Four (4) Hour House Cleaning",
+        "description": "Four (4) hour house cleaning by Becca Caywood",
+        "starting_bid": 100.0,
+    },
+    {
+        "name": "Hockey Lovers Package",
+        "description": "Four (4) center ice tickets for Wichita Thunder Hockey, ice skating admission and rental for four (4)",
+        "starting_bid": 75.0,
+    },
+    {
         "name": "Front Row Seats Music Program: 1st Grade",
         "description": "Up to five (5) reserved seats in the front row at MPAAC for the Music Program Spring 2027 - 1st Grade",
         "starting_bid": 50.00,
