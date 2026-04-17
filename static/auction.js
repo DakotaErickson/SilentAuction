@@ -67,7 +67,6 @@ async function loadItems() {
   try {
     const res  = await fetch(`${BASE}/items`);
     const data = await res.json();
-    console.log(data)
 
     document.getElementById('loading').style.display = 'none';
 

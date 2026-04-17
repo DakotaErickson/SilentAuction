@@ -28,11 +28,6 @@ ITEMS = [
         "starting_bid": 100.0,
     },
     {
-        "name": "Hockey Lovers Package",
-        "description": "Four (4) center ice tickets for Wichita Thunder Hockey, ice skating admission and rental for four (4)",
-        "starting_bid": 75.0,
-    },
-    {
         "name": "Front Row Seats Music Program: 1st Grade",
         "description": "Up to five (5) reserved seats in the front row at MPAAC for the Music Program Spring 2027 - 1st Grade",
         "starting_bid": 50.00,
