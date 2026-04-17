@@ -14,7 +14,7 @@ ITEMS = [
     },
     {
         "name": "Birthday Party Package",
-        "description": "Birthday party at Bricks & Minifigs (M-TH), small horizontal banner from Brush and Banner Co, birthday cake from Carrie.bakes Cakes",
+        "description": "Birthday party at Bricks & Minifigs (M-TH), small horizontal banner from Brush and Banner Co, birthday cake from Carrie Bakes Cakes",
         "starting_bid": 100.0,
     },
     {
@@ -68,24 +68,24 @@ ITEMS = [
         "starting_bid": 50.00,
     },
     {
-        "name": "Parent Pick Up Reserved Spot: Quarter 1 2026",
-        "description": "August 18th to October 14th",
+        "name": "SKIP THE LINE Parent Pick Up/Drop Off Reserved Spot: Quarter 1 2026",
+        "description": "August 18th to October 14th. Designated spot to drop off/pick up your student(s) by the office",
         "starting_bid": 50.00,
     },
 
     {
-        "name": "Parent Pick Up Reserved Spot: Quarter 2 2026",
-        "description": "October 19th to December 22nd",
+        "name": "SKIP THE LINE Parent Pick Up/Drop off Reserved Spot: Quarter 2 2026",
+        "description": "October 19th to December 22nd. Designated spot to drop off/pick up your student(s) by the office",
         "starting_bid": 50.00,
     },
     {
-        "name": "Parent Pick Up Reserved Spot: Quarter 3 2027",
-        "description": "January 6th to March 12th",
+        "name": "SKIP THE LINE Parent Pick Up/Drop off Reserved Spot: Quarter 3 2027",
+        "description": "January 6th to March 12th. Designated spot to drop off/pick up your student(s) by the office",
         "starting_bid": 50.00,
     },
     {
-        "name": "Parent Pick Up Reserved Spot: Quarter 4 2027",
-        "description": "March 22nd to May 21st",
+        "name": "SKIP THE LINE Parent Pick Up/Drop off Reserved Spot: Quarter 4 2027",
+        "description": "March 22nd to May 21st. Designated spot to drop off/pick up your student(s) by the office",
         "starting_bid": 50.00,
     },
     {
